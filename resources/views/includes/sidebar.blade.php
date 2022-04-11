@@ -23,39 +23,35 @@
             <!-- Divider -->
             <hr class="sidebar-divider">
 
+            @if (count($sidebar->operational_group) != 0)
             <!-- Heading -->
             <div class="sidebar-heading">
                 Operational
             </div>
-            @php
-                $Operational = [
-                    'Operationalcontract-po', 
-                    'Operationaloperational-cost', 
-                    'Operationalcreate.contract'
-                    ];
-                $ContractPO = [
-                    'Operationalcontract-po',
-                    'Operationalcreate.contract'
-                    ];
-            @endphp
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item {{ areActiveRoutes($Operational) }}">
-                <a class="nav-link {{ areCollapseRoutes($Operational) }}" href="#" data-toggle="collapse" data-target="#collapseTwo"
+            <li class="nav-item {{ areActiveRoutes($sidebar->groups->operational) }}">
+                <a class="nav-link {{ areCollapseRoutes($sidebar->groups->operational) }}" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Components</span>
                 </a>
-                <div id="collapseTwo" class="collapse {{ areActiveRoutes($Operational, 'show') }}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseTwo" class="collapse {{ areActiveRoutes($sidebar->groups->operational, 'show') }}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item {{ areActiveRoutes($ContractPO) }}" href="{{ route('Operationalcontract-po') }}">Contract / PO</a>
-                        <a class="collapse-item {{ isActiveRoute('Operationaloperational-cost') }}" href="{{ route('Operationaloperational-cost') }}">Operational & Cost</a>
+                        @if (in_array('contract-po',$sidebar->operational_group))
+                        <a class="collapse-item {{ areActiveRoutes($sidebar->groups->contract) }}" href="{{ route('contract-po') }}">Contract / PO</a>
+                        @endif
+                        @if (in_array('operational-cost',$sidebar->operational_group))
+                        <a class="collapse-item {{ areActiveRoutes($sidebar->groups->opncost) }}" href="{{ route('operational-cost') }}">Operational & Cost</a>                            
+                        @endif
                     </div>
                 </div>
             </li>
 
             <!-- Divider -->
-            <hr class="sidebar-divider">
+            <hr class="sidebar-divider">  
+            @endif
 
+            @if (count($sidebar->monitoring_group) != 0)
             <!-- Heading -->
             <div class="sidebar-heading">
                 Monitoring
@@ -69,31 +65,16 @@
                     <span>Project Card</span></a>
             </li>
 
-            <!-- Nav Item - Pages Collapse Menu -->
-            <!-- <li class="nav-item active">
-                <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
-                    aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Pages</span>
-                </a>
-                <div id="collapsePages" class="collapse show" aria-labelledby="headingPages"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Login Screens:</h6>
-                        <a class="collapse-item" href="login.html">Login</a>
-                        <a class="collapse-item" href="register.html">Register</a>
-                        <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-                        <div class="collapse-divider"></div>
-                        <h6 class="collapse-header">Other Pages:</h6>
-                        <a class="collapse-item" href="404.html">404 Page</a>
-                        <a class="collapse-item active" href="blank.html">Blank Page</a>
-                    </div>
-                </div>
-            </li> -->
-
             <!-- Divider -->
             <hr class="sidebar-divider">
-            
+            @endif
+
+            @if (count($sidebar->configuration_group) != 0)
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Configuration
+            </div>
+
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item {{ areActiveRoutes(['Settingsmaster-clients']) }}">
                 <a class="nav-link {{ areCollapseRoutes(['Settingsmaster-clients']) }}" href="#" data-toggle="collapse" data-target="#collapseUtilities"
@@ -108,7 +89,7 @@
                     </div>
                 </div>
             </li>
-
+            @endif
             
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">

@@ -22,8 +22,8 @@ Route::middleware(['authapi','menu'])->group(function () {
 
     Route::get('/', function () { return view('home.index'); })->name('Dashboard');
 
-
-    Route::name('Operational')->group( function () {
+    Route::group(['prefix'=>'operational'], function()
+    {
         Route::get('/contract-po', function () {
             return view('contract-po.index');
         })->name('contract-po');
@@ -34,10 +34,8 @@ Route::middleware(['authapi','menu'])->group(function () {
             return view('contract-po.create');
         })->name('create.contract');
 
-
-
         Route::get('/operational-cost', function () {
-            return view('operational-cost.index');
+                return view('operational-cost.index');
         })->name('operational-cost');
     });
 });

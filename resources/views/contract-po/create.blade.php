@@ -223,7 +223,7 @@
 
                                         <div class="d-flex justify-content-center bd-highlight mb-3">
                                             <div class="p-2 bd-highlight">
-                                                <a href="{{ route('Operationalcontract-po') }}" class="btn btn-danger">Back</a>
+                                                <a href="{{ "route('Operationalcontract-po')"}}" class="btn btn-danger">Back</a>
                                             </div>
                                             <div class="p-2 bd-highlight">
                                                 <button id="myButtonID" type="submit" class="btn btn-primary">Submit</button>
