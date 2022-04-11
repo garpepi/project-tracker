@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Auth\AuthController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/login',[AuthController::class, 'index'])->name('login');
+Route::post('/login',[AuthController::class, 'callapiusinglaravelui'])->name('loged-in');
+
+
+Route::middleware(['authapi','menu'])->group(function () {
+    
+});
 Route::get('/', function () {
     return view('home.index');
 })->name('Dashboard');
