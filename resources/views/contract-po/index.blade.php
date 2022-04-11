@@ -17,9 +17,16 @@
 @stop
 
 @section('content')
-
+                
                 <div class="container-fluid">
-
+                     @if (session('status'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session('status') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    @endif
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">Contract / PO</h1>
                     <p class="mb-4">List of Contract and Purchase Order (PO) that already recorded.</p>
@@ -50,72 +57,77 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach($contracts as $index => $contract)
                                         <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <td>61</td>
-                                            <td>2011/04/25</td>
+                                            <th class="text-center">{{$loop->iteration}}</th>
+                                            <td>{{$contract->cont_num}}</td>
+                                            <td>{{$contract->name}}</td>
+                                            <td>{{$contract->client->name}}</td>
                                             <td>
-                                                <button class="btn btn-sm btn-warning">
-                                                    <i class="nav-icon fas fa-eye"></i>
-                                                    <div class="dropdown-menu">
-                                                        <a class="dropdown-item">Show</a>
-                                                    </div>
-                                                </button>
-                                                <button class="btn btn-sm btn-primary">
-                                                    <i class="nav-icon fas fa-pen"></i>
-                                                    <div class="dropdown-menu">
-                                                        <a class="dropdown-item">Edit</a>
-                                                    </div>
-                                                </button>
-                                                <button class="btn btn-sm btn-success">
+                                                <ul id="myUL">
+                                                    <li><span class="caret">{{$contract->cont_num}}</span>
+                                                    <ul class="nested">
+                                                        @foreach ($contract->his()->orderBy('id', 'DESC')->get() as $cont_his)
+                                                        <a href="/contracts/history_show/{{$cont_his->id}}"><li>{{$cont_his->cont_num}}</li></a>
+                                                        @endforeach
+                                                    </ul>
+                                                    </li>
+                                                </ul>
+                                            </td>
+                                            <td class="text-center">
+                                            <div class="btn-group">
+                                                <form action="/contracts/{{$contract->id}}"
+                                                    method="get"
+                                                    class="d-inline">
+                                                        <button class="btn btn-sm btn-warning dropdown-hover">
+                                                            <i class="nav-icon fas fa-eye"></i>
+                                                            <div class="dropdown-menu">
+                                                                <a class="dropdown-item">Show</a>
+                                                            </div>
+                                                        </button>
+                                                </form>
+                                            </div>
+                                            <div class="btn-group">
+                                                <form action="/contracts/{{$contract->id}}/edit"
+                                                    method="get"
+                                                    class="d-inline">
+                                                        <button class="btn btn-sm btn-primary dropdown-hover">
+                                                            <i class="nav-icon fas fa-pen"></i>
+                                                            <div class="dropdown-menu">
+                                                                <a class="dropdown-item">Edit</a>
+                                                            </div>
+                                                        </button>
+                                                </form>
+                                            </div>
+                                            <div class="btn-group">
+                                                <form action="/contracts/{{$contract->id}}/ammend"
+                                                    method="get"
+                                                    class="d-inline">
+                                                <button class="btn btn-sm btn-success dropdown-hover">
                                                     <i class="nav-icon fas fa-clone"></i>
                                                     <div class="dropdown-menu">
                                                         <a class="dropdown-item">Ammend</a>
                                                     </div>
                                                 </button>
-                                                <button class="btn btn-sm btn-danger">
-                                                    <i class="nav-icon fas fa-trash"></i>
-                                                    <div class="dropdown-menu">
-                                                        <a class="dropdown-item">Delete</a>
-                                                    </div>
-                                                </button>     
+                                                </form>
+                                            </div>
+                                            <div class="btn-group">
+                                                <form action="/contracts/{{$contract->id}}"
+                                                    onsubmit="return confirm('Are you sure you want to delete?')" method="post"
+                                                    class="d-inline">
+                                                    @method('delete')
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-sm btn-danger dropdown-hover">
+                                                        <i class="nav-icon fas fa-trash"></i>
+                                                        <div class="dropdown-menu">
+                                                            <a class="dropdown-item">Delete</a>
+                                                        </div>
+                                                    </button>
+                                                </form>
+                                            </div>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td>Garrett Winters</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
-                                            <td>63</td>
-                                            <td>2011/07/25</td>
-                                            <td>
-                                                <button class="btn btn-sm btn-warning">
-                                                    <i class="nav-icon fas fa-eye"></i>
-                                                    <div class="dropdown-menu">
-                                                        <a class="dropdown-item">Show</a>
-                                                    </div>
-                                                </button>
-                                                <button class="btn btn-sm btn-primary">
-                                                    <i class="nav-icon fas fa-pen"></i>
-                                                    <div class="dropdown-menu">
-                                                        <a class="dropdown-item">Edit</a>
-                                                    </div>
-                                                </button>
-                                                <button class="btn btn-sm btn-success">
-                                                    <i class="nav-icon fas fa-clone"></i>
-                                                    <div class="dropdown-menu">
-                                                        <a class="dropdown-item">Ammend</a>
-                                                    </div>
-                                                </button>
-                                                <button class="btn btn-sm btn-danger">
-                                                    <i class="nav-icon fas fa-trash"></i>
-                                                    <div class="dropdown-menu">
-                                                        <a class="dropdown-item">Delete</a>
-                                                    </div>
-                                                </button>   
-                                            </td>
-                                        </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -149,72 +161,87 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach($projects as $project)
                                         <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <td>61</td>
-                                            <td>2011/04/25</td>
+                                            <th class="text-center">{{$loop->iteration}}</th>
+                                            @if($project->contract)
+                                            <td>{{$project->contract->cont_num}}</td>
+                                            @else
+                                            <td>-</td>
+                                            @endif
+                                            <td>{{$project->name}}</td>
+                                            {{-- <td>{{$project->no_po}}</td> --}}
                                             <td>
-                                                <button class="btn btn-sm btn-warning">
-                                                    <i class="nav-icon fas fa-eye"></i>
-                                                    <div class="dropdown-menu">
-                                                        <a class="dropdown-item">Show</a>
-                                                    </div>
-                                                </button>
-                                                <button class="btn btn-sm btn-primary">
-                                                    <i class="nav-icon fas fa-pen"></i>
-                                                    <div class="dropdown-menu">
-                                                        <a class="dropdown-item">Edit</a>
-                                                    </div>
-                                                </button>
-                                                <button class="btn btn-sm btn-success">
-                                                    <i class="nav-icon fas fa-clone"></i>
-                                                    <div class="dropdown-menu">
-                                                        <a class="dropdown-item">Ammend</a>
-                                                    </div>
-                                                </button>
-                                                <button class="btn btn-sm btn-danger">
-                                                    <i class="nav-icon fas fa-trash"></i>
-                                                    <div class="dropdown-menu">
-                                                        <a class="dropdown-item">Delete</a>
-                                                    </div>
-                                                </button>   
+                                                <ul id="myULP">
+                                                    <li><span class="caret">{{$project->no_po}}</span>
+                                                    <ul class="nested">
+                                                        @foreach ($project->his()->orderBy('id', 'DESC')->get() as $pro_his)
+                                                        <a href="/projects/history_show/{{$pro_his->id}}"><li>{{$pro_his->no_po}}</li></a>
+                                                        @endforeach
+                                                    </ul>
+                                                    </li>
+                                                </ul>
+                                            </td>
+                                            <td class="text-center">
+                                                <!-- show -->
+                                                <div class="btn-group">
+                                                    <form action="/projects/{{$project->id}}"
+                                                        method="get"
+                                                        class="d-inline">
+                                                            <button class="btn btn-sm btn-warning dropdown-hover">
+                                                                <i class="nav-icon fas fa-eye"></i>
+                                                                <div class="dropdown-menu">
+                                                                    <a class="dropdown-item">Show</a>
+                                                                </div>
+                                                            </button>
+                                                    </form>
+                                                </div>
+                                                <!-- edit -->
+                                                <!--
+                                                <div class="btn-group">
+                                                    <form action="/projects/{{$project->id}}/edit"
+                                                        method="get"
+                                                        class="d-inline">
+                                                            <button class="btn btn-sm btn-primary dropdown-hover">
+                                                                <i class="nav-icon fas fa-pen"></i>
+                                                                <div class="dropdown-menu">
+                                                                    <a class="dropdown-item">Edit</a>
+                                                                </div>
+                                                            </button>
+                                                    </form>
+                                                </div>
+                                                -->
+                                                <!-- ammend -->
+                                                <div class="btn-group">
+                                                    <form action="/projects/{{$project->id}}/ammend"
+                                                        method="get"
+                                                        class="d-inline">
+                                                    <button class="btn btn-sm btn-success dropdown-hover">
+                                                        <i class="nav-icon fas fa-clone"></i>
+                                                        <div class="dropdown-menu">
+                                                            <a class="dropdown-item">Adendum</a>
+                                                        </div>
+                                                    </button>
+                                                    </form>
+                                                </div>
+                                                <!-- delete -->
+                                                <div class="btn-group">
+                                                    <form action="/projects/{{$project->id}}"
+                                                        onsubmit="return confirm('Are you sure you want to delete?')" method="post"
+                                                        class="d-inline">
+                                                        @method('delete')
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-sm btn-danger dropdown-hover">
+                                                            <i class="nav-icon fas fa-trash"></i>
+                                                            <div class="dropdown-menu">
+                                                                <a class="dropdown-item">Delete</a>
+                                                            </div>
+                                                        </button>
+                                                    </form>
+                                                </div>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td>Garrett Winters</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
-                                            <td>63</td>
-                                            <td>2011/07/25</td>
-                                            <td>
-                                                <button class="btn btn-sm btn-warning">
-                                                    <i class="nav-icon fas fa-eye"></i>
-                                                    <div class="dropdown-menu">
-                                                        <a class="dropdown-item">Show</a>
-                                                    </div>
-                                                </button>
-                                                <button class="btn btn-sm btn-primary">
-                                                    <i class="nav-icon fas fa-pen"></i>
-                                                    <div class="dropdown-menu">
-                                                        <a class="dropdown-item">Edit</a>
-                                                    </div>
-                                                </button>
-                                                <button class="btn btn-sm btn-success">
-                                                    <i class="nav-icon fas fa-clone"></i>
-                                                    <div class="dropdown-menu">
-                                                        <a class="dropdown-item">Ammend</a>
-                                                    </div>
-                                                </button>
-                                                <button class="btn btn-sm btn-danger">
-                                                    <i class="nav-icon fas fa-trash"></i>
-                                                    <div class="dropdown-menu">
-                                                        <a class="dropdown-item">Delete</a>
-                                                    </div>
-                                                </button>   
-                                            </td>
-                                        </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>

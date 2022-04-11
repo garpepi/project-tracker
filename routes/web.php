@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\ContractPo;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,9 +25,8 @@ Route::middleware(['authapi','menu'])->group(function () {
 
     Route::group(['prefix'=>'operational'], function()
     {
-        Route::get('/contract-po', function () {
-            return view('contract-po.index');
-        })->name('contract-po');
+        Route::get('/contract-po', [ContractPo::class, 'index'])->name('contract-po');
+
         Route::get('/contract-po/create', function () {
             return view('contract-po.create');
         })->name('create.contract');
