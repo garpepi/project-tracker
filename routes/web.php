@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\ContractPo;
+use App\Http\Controllers\ContractsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,9 +28,12 @@ Route::middleware(['authapi','menu'])->group(function () {
     {
         Route::get('/contract-po', [ContractPo::class, 'index'])->name('contract-po');
 
-        Route::get('/contract-po/create', function () {
-            return view('contract-po.create');
-        })->name('create.contract');
+        Route::resource('/contracts',ContractsController::class);
+        Route::get('/contracts/{contract}/ammend', [ContractsController::class, 'ammend'])->name('contracts.ammend');
+        Route::put('/contracts/{contract}', [ContractsController::class, 'upammend'])->name('contracts.upammend');
+        Route::post('/contract_doc/{contract_doc}', [ContractsController::class, 'destroyDoc'])->name('contracts.destroyDoc');
+        Route::get('/contracts/history_show/{id}', [ContractsController::class, 'history_show'])->name('contracts.history');
+
         Route::post('/contract-po/create', function () {
             return view('contract-po.create');
         })->name('create.contract');

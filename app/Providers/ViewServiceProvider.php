@@ -36,11 +36,32 @@ class ViewServiceProvider extends ServiceProvider
                     'contract-po', 
                     'operational-cost', 
                     'create.contract',
-                    'operational-cost'
+                    'operational-cost',
+                    'create.contract',
+                    'contracts.index',
+                    'contracts.store',
+                    'contracts.create',
+                    'contracts.show',
+                    'contracts.update',
+                    'contracts.history',
+                    'contracts.destroy',
+                    'contracts.upammend',
+                    'contracts.ammend',
+                    'contracts.destroyDoc'
                 ],
                 "contract" => [
                     'contract-po',
-                    'create.contract'
+                    'create.contract',
+                    'contracts.index',
+                    'contracts.store',
+                    'contracts.create',
+                    'contracts.show',
+                    'contracts.update',
+                    'contracts.history',
+                    'contracts.destroy',
+                    'contracts.upammend',
+                    'contracts.ammend',
+                    'contracts.destroyDoc'
                 ],
                 "opncost" => [
                     'operational-cost'

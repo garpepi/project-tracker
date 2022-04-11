@@ -35,7 +35,7 @@
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary d-flex justify-content-between align-items-center">List Contract
-                                <a href="{{ route('create.contract') }}" class="btn btn-primary btn-icon-split">
+                                <a href="{{ route('contracts.create') }}" class="btn btn-primary btn-icon-split">
                                         <span class="icon text-white-50">
                                             <i class="fas fa-plus"></i>
                                         </span>
