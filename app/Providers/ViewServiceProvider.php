@@ -47,6 +47,7 @@ class ViewServiceProvider extends ServiceProvider
                     'contracts.destroy',
                     'contracts.upammend',
                     'contracts.ammend',
+                    'contracts.edit',
                     'contracts.destroyDoc'
                 ],
                 "contract" => [
@@ -61,6 +62,7 @@ class ViewServiceProvider extends ServiceProvider
                     'contracts.destroy',
                     'contracts.upammend',
                     'contracts.ammend',
+                    'contracts.edit',
                     'contracts.destroyDoc'
                 ],
                 "opncost" => [

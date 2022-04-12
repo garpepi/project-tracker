@@ -55,10 +55,7 @@ class ContractsController extends Controller
         $response = Http::get('http://usersmanage.adi-internal.com/api/auth/getrolluser');
         $roleUser = json_decode((string) $response->body(), true);
         $ListroleUser = $roleUser['RoleUser'];
-        // dd(count($roleUser['RoleUser']));
-        // foreach ($ListroleUser as $key => $value) {
-        //     dd($value['name']);
-        // }
+
         $clients= Client::all();
         $types= Type::all();
         $typecek = Contract::with('type')->first();
@@ -79,17 +76,7 @@ class ContractsController extends Controller
         $request->validate([
         'name' => 'required',
         'client_id' => 'required',
-        // 'cont_num' => 'required|min:1',
-        // 'type_id' => 'required'
         ]);
-        // $validator = Validator::make($request->all(), [
-        // 'filename.*' => 'required|mimes:pdf,xlx,csv,doc,docx',
-        // ]);
-        // if ($validator->fails()) {
-        //              return back()
-        //                     ->with('errorUpload', 'The file upload must be a file of type: pdf, xlx, csv, doc, docx.')
-        //                     ->withInput();
-        // }
         if($request->type == 1){
             $request->validate([
                 'desc' => 'required',
@@ -227,7 +214,7 @@ class ContractsController extends Controller
         $clients= Client::all();
 
         // dd($blankets);
-        return view('contracts.v_show', compact('contract', 'clients', 'blankets', 'filename'));
+        return view('contracts.edit', compact('contract', 'clients', 'blankets', 'filename'));
     }
 
     /**
@@ -242,9 +229,8 @@ class ContractsController extends Controller
         $clients= Client::all();
         $typecek = Contract::with('type')->first();
         $blankets = Blanket::with('g_quantity','g_total_value')->where('contract_id',$contract->id)->get();
-        // dd($blankets);
         $types= Type::all();
-        return view('contracts.v_edit', compact('contract', 'clients', 'filename','blankets','types','typecek'));
+        return view('contracts.edit', compact('contract', 'clients', 'filename','blankets','types','typecek'));
     }
     /**
      * Update the specified resource in storage.
@@ -255,15 +241,6 @@ class ContractsController extends Controller
      */
     public function update(Request $request, Contract $contract)
     {
-        // $validator = Validator::make($request->all(), [
-        // 'filename.*' => 'required|mimes:pdf,xlx,csv,doc,docx',
-        // ]);
-        // if ($validator->fails()) {
-        //     return back()
-        //             ->with('errorUpload', 'The file upload must be a file of type: pdf, xlx, csv, doc, docx.')
-        //             ->withInput();
-        // }
-        // dd($request->all());
         $newType_id = $request->get('type');
         $dataOlds =Contract::all();
         // dd($dataOlds);
@@ -371,11 +348,11 @@ class ContractsController extends Controller
                 $file->move(public_path('docs'), $filename);
             }
         }
-        return redirect('/contractProjects')->with('status', 'Data Success Change!');
+        return redirect()->route('contract-po')->with('status', 'Data Success Change!');
     }
 
     public function ammend(Contract $contract)
-    {
+    {dd("ammend");
         $contracts= Contract::with('doc','type')->get();
         $filename = $contract->doc;
         $clients= Client::all();
@@ -389,7 +366,7 @@ class ContractsController extends Controller
         return view('contracts.v_ammend', compact('contract', 'clients', 'filename','blankets','types','typecek'));
     }
     public function upammend(Request $request, Contract $contract)
-    {
+    {dd("upammend");
         $userid = session()->get('token')['user']['id'];
         $request->validate([
           'name' => 'required',

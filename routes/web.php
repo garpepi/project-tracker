@@ -30,7 +30,7 @@ Route::middleware(['authapi','menu'])->group(function () {
 
         Route::resource('/contracts',ContractsController::class);
         Route::get('/contracts/{contract}/ammend', [ContractsController::class, 'ammend'])->name('contracts.ammend');
-        Route::put('/contracts/{contract}', [ContractsController::class, 'upammend'])->name('contracts.upammend');
+        Route::put('/contracts/{contract}/ammend', [ContractsController::class, 'upammend'])->name('contracts.upammend');
         Route::post('/contract_doc/{contract_doc}', [ContractsController::class, 'destroyDoc'])->name('contracts.destroyDoc');
         Route::get('/contracts/history_show/{id}', [ContractsController::class, 'history_show'])->name('contracts.history');
 

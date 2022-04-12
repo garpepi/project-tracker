@@ -76,28 +76,20 @@
                                             </td>
                                             <td class="text-center">
                                             <div class="btn-group">
-                                                <form action="/contracts/{{$contract->id}}"
-                                                    method="get"
-                                                    class="d-inline">
-                                                        <button class="btn btn-sm btn-warning dropdown-hover">
-                                                            <i class="nav-icon fas fa-eye"></i>
-                                                            <div class="dropdown-menu">
-                                                                <a class="dropdown-item">Show</a>
-                                                            </div>
-                                                        </button>
-                                                </form>
+                                                <a href="{{ route('contracts.show',$contract->id ) }}" class="btn btn-sm btn-warning dropdown-hover">
+                                                    <i class="nav-icon fas fa-eye"></i>
+                                                    <div class="dropdown-menu">
+                                                        <a class="dropdown-item">Show</a>
+                                                    </div>
+                                                </a>
                                             </div>
                                             <div class="btn-group">
-                                                <form action="/contracts/{{$contract->id}}/edit"
-                                                    method="get"
-                                                    class="d-inline">
-                                                        <button class="btn btn-sm btn-primary dropdown-hover">
-                                                            <i class="nav-icon fas fa-pen"></i>
-                                                            <div class="dropdown-menu">
-                                                                <a class="dropdown-item">Edit</a>
-                                                            </div>
-                                                        </button>
-                                                </form>
+                                                <a href="{{ route('contracts.edit',$contract->id ) }}" class="btn btn-sm btn-primary dropdown-hover">
+                                                    <i class="nav-icon fas fa-pen"></i>
+                                                    <div class="dropdown-menu">
+                                                        <a class="dropdown-item">Edit</a>
+                                                    </div>
+                                                </a>
                                             </div>
                                             <div class="btn-group">
                                                 <form action="/contracts/{{$contract->id}}/ammend"
