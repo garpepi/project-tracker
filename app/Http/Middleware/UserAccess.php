@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
-class AuthClientAccess
+class UserAccess
 {
     /**
      * Handle an incoming request.
@@ -15,12 +15,16 @@ class AuthClientAccess
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle(Request $request, Closure $next, $guard = null)
+    public function handle(Request $request, Closure $next)
     {
         if (session()->has('token')) {
-            // dd(session()->get('token')['user']['role']);
-            return $next($request);
-        } else {
+            if (session()->get('token')['user']['role'] == 'User') {
+                return $next($request);
+            }else{
+                Alert::error('You Not Have Access', 'Access denied');
+                return back();
+            }
+        }   else {
             Alert::error('Please Login', 'Access denied');
             return redirect()->route('login');
         }
