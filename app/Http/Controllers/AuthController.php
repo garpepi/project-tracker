@@ -1,17 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
-// use RealRashid\SweetAlert\Facades\Alert;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class AuthController extends Controller
 {
     public function index()
     {
-       return view('login.index');
+       return view('auth.v_login');
     }
 
     public function callapiusinglaravelui(Request $request)
@@ -28,15 +27,17 @@ class AuthController extends Controller
                 'password' => $credentials['password'],
             ]);
             $data = json_decode((string) $response->body(), true);
+            // dd($data);
             try {
                 $data['access_token'] == true;
                 session()->put('token', $data);
                 session()->push($data['user']['username'], $data['user']['username']);
-                return redirect()->intended('/');
+                Alert::toast('Slamat Datang', 'success');
+                return redirect()->intended('/client');
             } catch (\Throwable $th) {
                 try {
                     $data['password'] == true;
-                    // Alert::toast('Username or password salah', 'error');
+                    Alert::toast('Username or password salah', 'error');
                     return redirect('login');
                 } catch (\Throwable $th) {
                     $data['error'] == true;
@@ -48,9 +49,10 @@ class AuthController extends Controller
     }
     public function logout()
     {
+
         if (session()->has('token')) {
             session()->flush();
-            // Alert::toast('Anda telah logout !!!', 'success');
+            Alert::toast('Anda telah logout !!!', 'success');
             return redirect()->route('login');
         } else {
             return response('Unauthorized.', 401);
