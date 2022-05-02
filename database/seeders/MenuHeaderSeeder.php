@@ -14,22 +14,16 @@ class MenuHeaderSeeder extends Seeder
      */
     public function run()
     {
-        $check1 = Menu_header::where('name', 'Operational')->first();
+        $check1 = Menu_header::where('name', 'Menu')->first();
         if ($check1 === null) {
             Menu_header::create([
-                'name' => 'Operational',
+                'name' => 'Menu',
             ]);
         }
         $check1 = Menu_header::where('name', 'Configuration')->first();
         if ($check1 === null) {
             Menu_header::create([
                 'name' => 'Configuration',
-            ]);
-        }
-        $check1 = Menu_header::where('name', 'Monitoring')->first();
-        if ($check1 === null) {
-            Menu_header::create([
-                'name' => 'Monitoring',
             ]);
         }
     }

@@ -26,7 +26,7 @@ class MenusSeeder extends Seeder
         $check1 = Menu::where('name', 'Master Client')->first();
         if ($check1 === null) {
             Menu::create([
-                'menu_header_id' => 2,
+                'menu_header_id' => 1,
                 'name' => 'Master Client',
                 'url' => 'client',
                 'icon' => 'far fa-handshake',
@@ -37,7 +37,7 @@ class MenusSeeder extends Seeder
             Menu::create([
                 'menu_header_id' => 1,
                 'name' => 'Contract / PO',
-                'url' => 'contract-po',
+                'url' => 'contractProjects',
                 'icon' => 'fas fa-tasks',
             ]);
         }
@@ -46,14 +46,14 @@ class MenusSeeder extends Seeder
             Menu::create([
                 'menu_header_id' => 1,
                 'name' => 'Operational & Cost',
-                'url' => 'operational-cost',
+                'url' => 'operationals',
                 'icon' => 'fas fa-briefcase',
             ]);
         }
         $check1 = Menu::where('name', 'Project Card')->first();
         if ($check1 === null) {
             Menu::create([
-                'menu_header_id' => 3,
+                'menu_header_id' => 1,
                 'name' => 'Project Card',
                 'url' => 'projectcard',
                 'icon' => 'fas fa-id-card',
@@ -129,15 +129,6 @@ class MenusSeeder extends Seeder
                 'name' => 'Account Payable',
                 'url' => 'payable',
                 'icon' => 'fas fa-comment-dollar',
-            ]);
-        }
-        $check1 = Menu::where('name', 'Create Contract')->first();
-        if ($check1 === null) {
-            Menu::create([
-                'menu_header_id' => 1,
-                'name' => 'Create Contract',
-                'url' => 'create.contract',
-                'icon' => '',
             ]);
         }
     }
