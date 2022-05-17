@@ -29,7 +29,7 @@ class PaymentController extends Controller
                  $query->select(DB::raw('SUM(amount)'));
              }])->orderBy('id', 'desc')->get();
             //  dd($invoiceList);
-         return view('payments.v_index', compact('invoiceList','clients'));
+         return view('account-receivable.index', compact('invoiceList','clients'));
     }
     public function show(Request $request)
     {

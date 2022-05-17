@@ -51,7 +51,7 @@ class ProjectsController extends Controller
        $taxs = Tax::all();
        $typecek = Contract::with('type')->first();
        $suppliers = Suplier::all();
-       return view('projects.v_create_project', compact('contracts', 'project', 'clients','types','typecek','taxs','suppliers'));
+       return view('projects.create', compact('contracts', 'project', 'clients','types','typecek','taxs','suppliers'));
     }
 
     /**
@@ -325,7 +325,7 @@ class ProjectsController extends Controller
         // dd($tax_proof);
         // $textrow = Useblanket::with('blanket')->select('*')->where('project_id',2)->get();
         // dd($textrow[0]->blanket);
-        return view('projects.v_show', compact('project',
+        return view('projects.show', compact('project',
          'clients', 'contracts', 'progress_item',
          'project_cost', 'projContract', 'types',
          'typecek','tax_proof','tax'));

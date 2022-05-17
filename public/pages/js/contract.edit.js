@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $("#contract_type").val(type); 
+    $("#contract_type").val(type);
     console.log();
     $("#type_val").val($("#contract_type").val());
     hide_content(

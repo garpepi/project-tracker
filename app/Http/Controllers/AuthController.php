@@ -10,7 +10,7 @@ class AuthController extends Controller
 {
     public function index()
     {
-       return view('auth.v_login');
+       return view('login.index');
     }
 
     public function callapiusinglaravelui(Request $request)

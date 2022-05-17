@@ -62,7 +62,7 @@ class ContractsController extends Controller
         $clients= Client::all();
         $types= Type::all();
         $typecek = Contract::with('type')->first();
-        return view('contracts.v_create_contract', compact('clients','types','typecek','ListroleUser'));
+        return view('contracts.create', compact('clients','types','typecek','ListroleUser'));
     }
 
     /**
@@ -227,7 +227,7 @@ class ContractsController extends Controller
         $clients= Client::all();
 
         // dd($blankets);
-        return view('contracts.v_show', compact('contract', 'clients', 'blankets', 'filename'));
+        return view('contracts.show', compact('contract', 'clients', 'blankets', 'filename'));
     }
 
     /**
@@ -244,7 +244,7 @@ class ContractsController extends Controller
         $blankets = Blanket::with('g_quantity','g_total_value')->where('contract_id',$contract->id)->get();
         // dd($blankets);
         $types= Type::all();
-        return view('contracts.v_edit', compact('contract', 'clients', 'filename','blankets','types','typecek'));
+        return view('contracts.edit', compact('contract', 'clients', 'filename','blankets','types','typecek'));
     }
     /**
      * Update the specified resource in storage.
@@ -386,7 +386,7 @@ class ContractsController extends Controller
         $blankets = Blanket::with('g_quantity','g_total_value')->where('contract_id',$contract->id)->get();
 
         // dd();
-        return view('contracts.v_ammend', compact('contract', 'clients', 'filename','blankets','types','typecek'));
+        return view('contracts.ammend', compact('contract', 'clients', 'filename','blankets','types','typecek'));
     }
     public function upammend(Request $request, Contract $contract)
     {

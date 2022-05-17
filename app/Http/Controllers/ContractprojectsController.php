@@ -37,7 +37,7 @@ class ContractprojectsController extends Controller
             $contracts= Contract::with('client')->orderBy('id', 'desc')->get();
         }
 		$projects= Project::with('contract','contract.type')->orderBy('id', 'desc')->get();
-        return view('contractspo.v_index', compact('contracts','projects'));
+        return view('contract-po.index', compact('contracts','projects'));
     }
 
     /**
@@ -50,7 +50,7 @@ class ContractprojectsController extends Controller
         $clients= Client::all();
         $types= Type::all();
         $typecek = Contract::with('type')->first();
-        return view('contractspo.v_create_contract', compact('clients','types','typecek'));
+        return view('contracts.create', compact('clients','types','typecek'));
     }
 
     /**

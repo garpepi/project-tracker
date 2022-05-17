@@ -45,7 +45,7 @@ Route::get('/logout',[AuthController::class, 'logout'])->name('logout');
 Route::middleware(['authapi','menu'])->group(function () {
     Route::get('/', function () {
         return redirect()->intended('/client');
-    });
+    })->name('Dashboard');
     //user
     Route::get('/user-profile',[AuthController::class, 'userProfile'])->middleware('authapi')->name('profile');
 

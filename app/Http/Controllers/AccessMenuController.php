@@ -21,7 +21,7 @@ class AccessMenuController extends Controller
         $role = Role::all();
         $menuheader = Menu_header::with('menu')->get();
         $accessMenu = null;
-        return view('menus.v_index',compact('role','menuheader','accessMenu'));
+        return view('user-access.index',compact('role','menuheader','accessMenu'));
     }
 
     /**

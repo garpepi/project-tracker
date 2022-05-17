@@ -17,7 +17,7 @@ class SuplierController extends Controller
     public function index()
     {
         $supliers = Suplier::all();
-        return view('supliers.v_index',compact('supliers'));
+        return view('supplier.index',compact('supliers'));
     }
 
     /**

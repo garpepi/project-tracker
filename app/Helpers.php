@@ -27,7 +27,7 @@ function areActiveRoutes(Array $routes, $output = "active")
 {
     foreach ($routes as $route)
     {
-        if (Route::currentRouteName() == $route) return $output;
+        if (request()->is(''.$route.'*')) return $output;
     }
 
 }
@@ -45,7 +45,7 @@ function areCollapseRoutes(Array $routes, $output = "", $default = "collapsed")
 {
     foreach ($routes as $route)
     {
-        if (Route::currentRouteName() == $route) return $output;
+        if (request()->is(''.$route.'*')) return $output;
     }
 
     return $default;

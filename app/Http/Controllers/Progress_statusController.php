@@ -24,7 +24,7 @@ class Progress_statusController extends Controller
         // }
 
        $progress_status= Progress_status::all();
-       return view('status.v_index', compact('progress_status'));
+       return view('master-status.index', compact('progress_status'));
     }
 
     /**

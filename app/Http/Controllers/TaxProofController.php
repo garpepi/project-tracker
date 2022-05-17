@@ -30,7 +30,7 @@ class TaxProofController extends Controller
             $q->where('close', null);
          })->get();
         //  dd($taxproofwithtaxcollect);
-        return view('tax.v_index', compact('taxproof','taxproofwithtaxcollect'));
+        return view('tax.index', compact('taxproof','taxproofwithtaxcollect'));
     }
 
     /**

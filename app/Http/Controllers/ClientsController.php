@@ -21,7 +21,7 @@ class ClientsController extends Controller
     {
         //
 
-     return view('v_master_client');
+     return view('master-clients.index');
 
     }
 
@@ -33,7 +33,7 @@ class ClientsController extends Controller
     public function create()
     {
         //
-        return view('v_master_client');
+        return view('master-clients');
     }
 
     /**

@@ -20,7 +20,7 @@ class EmailConfigController extends Controller
     {
         $ec = Email_configuration::with('frequency','email')->get()->sortDesc();
 
-        return view('config.email.v_index',compact('ec'));
+        return view('email-config.index',compact('ec'));
     }
 
     public function show()

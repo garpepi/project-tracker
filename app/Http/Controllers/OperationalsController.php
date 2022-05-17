@@ -30,7 +30,7 @@ class OperationalsController extends Controller
     public function index()
     {
         $operationals = Project::with(['contract.client'])->orderBy('id', 'desc')->get();
-        return view('operationals.v_index', compact('operationals'));
+        return view('operational-cost.index', compact('operationals'));
     }
 
     /**

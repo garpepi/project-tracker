@@ -11,7 +11,7 @@ class TypeController extends Controller
     public function index()
     {
         $types = Type::all();
-        return view('config.typecontract.v_index', compact('types'));
+        return view('type-contract.index', compact('types'));
     }
 
     public function store(Request $request)
