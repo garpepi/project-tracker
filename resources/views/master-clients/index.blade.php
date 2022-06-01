@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section('title', 'Contract - Po')
+@section('title', 'Master Client')
 
 @section('custom_css')
 @stop
@@ -21,33 +21,37 @@
     <!-- Page Heading -->
     <div class="row">
         <div class="col">
-            <h1 class="h3 mb-2 text-gray-800">Master Client</h1>
+            <h1 class="h3 mb-2 text-gray-800">@yield('title')</h1>
         </div>
     </div>
 
-    <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Create Client</h6>
-        </div>
-        <div class="card-body">
-            <form method="POST" action="{{ route('client.store') }}" class="col-md-12">
-                @csrf
-                <div class="form-row d-flex justify-content-center">
-                    <div class="form-group col-md-6 required">
-                        <label class="control-label" for="name">Client Name</label>
-                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="Enter Name" name="name" required>
-                        @error('name')
-                        <div class="invalid-feedback">{{$message}}</div>
-                        @enderror
-                    </div>
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-8 col-sm-12 ">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Create Client</h6>
                 </div>
-                <div class="d-flex justify-content-center bd-highlight mb-3">
-                    <div class="p-2 bd-highlight">
-                        <button id="myButtonID" type="submit" class="btn btn-primary">Submit</button>
-                    </div>
-                </div>
+                <div class="card-body">
+                    <form method="POST" action="{{ route('client.store') }}" class="col-md-12">
+                        @csrf
+                        <div class="form-row d-flex justify-content-center">
+                            <div class="form-group col-md-6 required">
+                                <label class="control-label" for="name">Client Name</label>
+                                <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="Enter Name" name="name" required>
+                                @error('name')
+                                <div class="invalid-feedback">{{$message}}</div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center bd-highlight mb-3">
+                            <div class="p-2 bd-highlight">
+                                <button id="myButtonID" type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
 
-            </form>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </div>

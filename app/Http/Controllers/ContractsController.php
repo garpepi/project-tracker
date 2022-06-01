@@ -42,7 +42,7 @@ class ContractsController extends Controller
 
         $contracthislis = Contract_history::with('client')->where('id',$id)->get();
         // dd($contracthislis);
-        return view('contracts.v_show_history', compact('contracthislis'));
+        return view('contracts.show_history', compact('contracthislis'));
     }
 
     /**

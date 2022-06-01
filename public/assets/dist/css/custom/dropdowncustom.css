@@ -1,0 +1,11 @@
+.dropdown-item {
+    text-align: center;
+    display: inline;
+    block-size: unset !important;
+}
+.dropdown-menu{
+    border-color: blue !important;
+    border-width: 1mm !important;
+    min-width: 0% !important;
+    padding: 0% !important;
+}

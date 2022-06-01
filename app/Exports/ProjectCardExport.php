@@ -54,7 +54,7 @@ class ProjectCardExport implements FromView, WithStyles, ShouldAutoSize
 
         $taxCost = Tax_project_cost::with('tax')->get();
 
-        return view('projectcard.exports.v_excel', [
+        return view('project-card.export_excel', [
             'projects' => $project,
             'invoices' => $invoice,
             'taxCosts' => $taxCost,

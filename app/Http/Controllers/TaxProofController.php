@@ -119,7 +119,7 @@ class TaxProofController extends Controller
 
             //  $sumtax = $tax_proof->where('id',$id)->sum('percentage');
             // dd($invoiceList);
-            return view('tax.v_show', compact('taxdetail','getproject','actualPay'));
+            return view('tax.show', compact('taxdetail','getproject','actualPay'));
         }
     }
 

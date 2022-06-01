@@ -29,7 +29,7 @@ class ProjectCardController extends Controller
         {
             $query->select(DB::raw('SUM(budget_of_quantity)'));
         }])->orderBy('id', 'desc')->get();
-        return view('projectcard.v_index',compact('projectcard'));
+        return view('project-card.index',compact('projectcard'));
     }
 
     /**
@@ -84,7 +84,7 @@ class ProjectCardController extends Controller
         $projectcost = Project_cost::with('progress_item','suplier')->where('project_id',$id)->get();
         // dd($invoice);
 
-        return view('projectcard.v_show',compact('projectcarddetail','invoice','projectcost'));
+        return view('project-card.show',compact('projectcarddetail','invoice','projectcost'));
     }
 
     /**

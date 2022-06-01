@@ -335,7 +335,7 @@ class ProjectsController extends Controller
 
         $projectsthislis = Project_history::with('contract.client')->where('id',$id)->get();
         // dd($projectsthislis);
-        return view('projects.v_show_history', compact('projectsthislis'));
+        return view('projects.show_history', compact('projectsthislis'));
     }
 
     /**
@@ -624,7 +624,7 @@ class ProjectsController extends Controller
         // $blanketList = Blanket::with('useblanket','g_quantity','g_total_value')->withSum('useblanket as blanket_use_volume', 'use_volume')->where('contract_id',1)->get();
         // // $x = [];
 
-        return view('projects.v_ammend', compact('project', 'contracts',
+        return view('projects.ammend', compact('project', 'contracts',
         'clients', 'progress_item', 'project_cost','types','typecek','tax_proof','tax'));
        }
 
@@ -899,7 +899,7 @@ class ProjectsController extends Controller
     public function destroy(Project $project)
     {
         Project::destroy($project->id);
-        return redirect('/projects')->with('status', 'Success Deleting Data!');
+        return redirect('/contractProjects')->with('status', 'Success Deleting Data!');
     }
     public function destroyItem(Progress_item $progress_item)
     {

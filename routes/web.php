@@ -49,13 +49,13 @@ Route::middleware(['authapi','menu'])->group(function () {
     //user
     Route::get('/user-profile',[AuthController::class, 'userProfile'])->middleware('authapi')->name('profile');
 
-    Route:: view('/operationals','v_operational')->middleware('authapi');
+    // Route:: view('/operationals','v_operational')->middleware('authapi');
     Route::resource('/client',ClientsController::class)->middleware('authapi');
 
     Route::resource('/contractProjects',ContractprojectsController::class)->middleware('authapi');
-    //Route::get('/contractProjects/{contract}/ammend', [ContractprojectsController::class, 'ammend'])->middleware('authapi');
-    //Route::put('/contractProjects/{contract}', [ContractprojectsController::class, 'upammend'])->middleware('authapi');
-    //Route::post('/contractProjects_doc/{contract_doc}', [ContractprojectsController::class, 'destroyDoc'])->middleware('authapi');
+        //Route::get('/contractProjects/{contract}/ammend', [ContractprojectsController::class, 'ammend'])->middleware('authapi');
+        //Route::put('/contractProjects/{contract}', [ContractprojectsController::class, 'upammend'])->middleware('authapi');
+        //Route::post('/contractProjects_doc/{contract_doc}', [ContractprojectsController::class, 'destroyDoc'])->middleware('authapi');
 
     Route::resource('/contracts',ContractsController::class)->middleware('authapi');
     Route::get('/contracts/{contract}/ammend', [ContractsController::class, 'ammend'])->middleware('authapi');

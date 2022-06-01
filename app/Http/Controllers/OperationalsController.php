@@ -65,7 +65,7 @@ class OperationalsController extends Controller
         $progress_items= Progress_item::where('project_id', $id)->get();
         $progress_docs = Progress_item::with('doc')->where('project_id', $id)->get();
         $project_cost = Project_cost::where('project_id', $id)->get();
-        return view('operationals.v_show', compact('progress_docs', 'id', 'progress_items','project_cost'));
+        return view('operational-cost.show', compact('progress_docs', 'id', 'progress_items','project_cost'));
     }
 
     /**
@@ -82,7 +82,7 @@ class OperationalsController extends Controller
         $po_num = Project::where('id', $id)->first();
         $taxproofs = Tax_proof::with('tax')->get();
         $suppliers = Suplier::all();
-        return view('operationals.v_edit', compact('progress_docs', 'id','progress_items','project_cost','po_num','taxproofs','suppliers'));
+        return view('operational-cost.edit', compact('progress_docs', 'id','progress_items','project_cost','po_num','taxproofs','suppliers'));
     }
     /**
      * Update the specified resource in storage.

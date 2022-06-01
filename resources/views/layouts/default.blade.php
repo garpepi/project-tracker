@@ -20,6 +20,9 @@
 
     <!-- Toastr -->
     <link rel="stylesheet" href="{{asset('assets/')}}/plugins/toastr/toastr.min.css">
+
+    <!-- Admin LTE -->
+    <!-- <link rel="stylesheet" href="{{asset('assets/')}}/dist/css/adminlte.min.css"> -->
     @yield('custom_css')
 
 </head>
@@ -138,6 +141,7 @@
 
     <!-- Toastr -->
     <script src="{{asset('assets/')}}/plugins/toastr/toastr.min.js"></script>
+    <!-- <script src="{{asset('assets/')}}/dist/js/adminlte.min.js"></script> -->
     @yield('custom_script')
 
 </body>

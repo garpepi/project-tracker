@@ -34,7 +34,7 @@ class Progress_statusController extends Controller
      */
     public function create()
     {
-        return view('status.v_create');
+        return view('master-status.create');
     }
 
     /**
@@ -61,7 +61,7 @@ class Progress_statusController extends Controller
      */
     public function show(Progress_status $progress_status)
     {
-        return view('status.v_show', compact('progress_status'));
+        return view('master-status.show', compact('progress_status'));
     }
 
     /**
@@ -74,7 +74,7 @@ class Progress_statusController extends Controller
     {
         //return $progress_status;
 
-        return view('status.v_edit', compact('progress_status'));
+        return view('master-status.edit', compact('progress_status'));
     }
 
     /**

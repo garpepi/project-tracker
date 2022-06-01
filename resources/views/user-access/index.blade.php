@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section('title', 'Contract - Po')
+@section('title', 'Access Menu')
 
 @section('custom_css')
 <!-- Custom styles for this page -->
@@ -19,53 +19,57 @@
     </div>
     @endif
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Access Menu</h1>
+    <h1 class="h3 mb-2 text-gray-800">@yield('title')</h1>
     <p class="mb-4">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aliquam corporis illo voluptas animi expedita, nisi officia libero quis porro illum esse beatae eos fugiat necessitatibus consequuntur fuga dolorum doloribus. Suscipit.</p>
 
     <!-- List Access Menu -->
-    <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary d-flex justify-content-between align-items-center">List Access Menu
-            </h6>
-        </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-bordered" id="menu_table" width="100%" cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th class="text-center">No</th>
-                            <th class="text-center">Role Name</th>
-                            <th class="text-center">Set Menu Access</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($role as $key => $r)
-                        <tr>
-                            <th class="text-center">{{$loop->iteration}}</th>
-                            <td class="text-center">{{$r->name}}</td>
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-10 col-sm-12 ">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary d-flex justify-content-between align-items-center">List @yield('title')
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="menu_table" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">No</th>
+                                    <th class="text-center">Role Name</th>
+                                    <th class="text-center">Set Menu Access</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($role as $key => $r)
+                                <tr>
+                                    <th class="text-center">{{$loop->iteration}}</th>
+                                    <td class="text-center">{{$r->name}}</td>
 
-                            <td class="text-center">
-                                <!-- show -->
-                                <div class="btn-group">
-                                    <button class="btn btn-sm btn-primary dropdown-hover" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#set-menu" onclick="showMenu({{$r->id}})">
-                                        <i class="nav-icon fas fa-pen"></i>
-                                        <div class="dropdown-menu">
-                                            <a class="dropdown-item">Set</a>
+                                    <td class="text-center">
+                                        <!-- show -->
+                                        <div class="btn-group">
+                                            <button class="btn btn-sm btn-primary dropdown-hover" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#set-menu" onclick="showMenu({{$r->id}})">
+                                                <i class="nav-icon fas fa-pen"></i>
+                                                <div class="dropdown-menu">
+                                                    <a class="dropdown-item">Set</a>
+                                                </div>
+                                            </button>
                                         </div>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <th class="text-center">No</th>
-                            <th class="text-center">Role Name</th>
-                            <th class="text-center">Set Menu Access</th>
-                        </tr>
-                    </tfoot>
-                </table>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th class="text-center">No</th>
+                                    <th class="text-center">Role Name</th>
+                                    <th class="text-center">Set Menu Access</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

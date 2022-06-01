@@ -31,7 +31,7 @@ class PayableController extends Controller
         // $projectcost = Project_cost::with('progress_item','suplier')->groupby('progress_item_id')->get();
         $projectcostwithProjectItem = Project_cost::with('progress_item','suplier')->get();
         // dd($projectcost);
-        return view('payable.v_index',compact('projectcost','projectcostwithProjectItem'));
+        return view('account-payable.index',compact('projectcost','projectcostwithProjectItem'));
     }
 
     /**
@@ -211,7 +211,7 @@ class PayableController extends Controller
         // dd($projectcost);
         $progress = Project_cost::with('progress_item')->where('progress_item_id',$id)->orderBy('id', 'desc')->first();
         $taxs = Tax::all();
-        return view('payable.v_list_payable_progress',compact('projectcost','progress','taxs'));
+        return view('account-payable.list_payable_progress',compact('projectcost','progress','taxs'));
     }
 
     public function changeRPtoInt($value)
